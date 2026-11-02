@@ -1,13 +1,13 @@
 <?php
 /**
  * Plugin Name:       isIPsafe
- * Plugin URI:        https://isipsafe.com
+ * Plugin URI:        https://isipsafe.com/integrations/wordpress
  * Description:       Blocks sign-ins and comments from IP addresses with a bad reputation and reports brute-force attackers to isIPsafe, the free IP reputation service.
  * Version:           0.1.0
  * Requires at least: 6.0
  * Requires PHP:      7.4
  * Author:            WaveCentric
- * Author URI:        https://isipsafe.com
+ * Author URI:        https://wavecentric.ai
  * License:           GPL-2.0-or-later
  * License URI:       https://www.gnu.org/licenses/gpl-2.0.html
  * Text Domain:       isipsafe
