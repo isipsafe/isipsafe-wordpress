@@ -1,0 +1,40 @@
+{
+    "name": "isipsafe/isipsafe-wordpress",
+    "description": "isIPsafe WordPress plugin: block malicious IPs at login and report brute-force attackers.",
+    "type": "wordpress-plugin",
+    "license": "GPL-2.0-or-later",
+    "homepage": "https://isipsafe.com",
+    "authors": [
+        {
+            "name": "WaveCentric",
+            "homepage": "https://isipsafe.com"
+        }
+    ],
+    "support": {
+        "issues": "https://github.com/isipsafe/isipsafe-wordpress/issues",
+        "source": "https://github.com/isipsafe/isipsafe-wordpress"
+    },
+    "require": {
+        "php": ">=7.4"
+    },
+    "require-dev": {
+        "phpunit/phpunit": "^9.6",
+        "wp-coding-standards/wpcs": "^3.1",
+        "phpcompatibility/phpcompatibility-wp": "^2.1",
+        "dealerdirect/phpcodesniffer-composer-installer": "^1.0"
+    },
+    "config": {
+        "platform": {
+            "php": "7.4.33"
+        },
+        "allow-plugins": {
+            "dealerdirect/phpcodesniffer-composer-installer": true
+        },
+        "sort-packages": true
+    },
+    "scripts": {
+        "lint": "phpcs",
+        "lint:fix": "phpcbf",
+        "test": "phpunit"
+    }
+}

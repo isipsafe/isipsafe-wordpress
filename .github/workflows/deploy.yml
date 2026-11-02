@@ -1,0 +1,38 @@
+name: Deploy to WordPress.org
+
+on:
+  release:
+    types: [published]
+
+permissions:
+  contents: write
+
+jobs:
+  deploy:
+    name: Deploy release to the plugin directory
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Check that the tag matches the plugin version
+        run: |
+          tag="${GITHUB_REF_NAME#v}"
+          header=$(sed -n 's/^ \* Version: *//p' isipsafe.php)
+          stable=$(sed -n 's/^Stable tag: *//p' readme.txt)
+          echo "tag=$tag header=$header stable=$stable"
+          test "$tag" = "$header" && test "$tag" = "$stable"
+
+      - name: Deploy
+        id: deploy
+        uses: 10up/action-wordpress-plugin-deploy@stable
+        with:
+          generate-zip: true
+        env:
+          SVN_USERNAME: ${{ secrets.SVN_USERNAME }}
+          SVN_PASSWORD: ${{ secrets.SVN_PASSWORD }}
+          SLUG: isipsafe
+
+      - name: Attach the zip to the release
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: gh release upload "${{ github.event.release.tag_name }}" "${{ steps.deploy.outputs.zip-path }}" --clobber
